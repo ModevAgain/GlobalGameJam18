@@ -28,8 +28,12 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
     public Color empty = new Color();                                       // Sprite color for empty cell
     public Color full = new Color();                                        // Sprite color for filled cell
 
+    private PuzzleManager _puzzleMan;
+
     void OnEnable()
     {
+        _puzzleMan = FindObjectOfType<PuzzleManager>();
+
         DragAndDropItem.OnItemDragStartEvent += OnAnyItemDragStart;         // Handle any item drag start
         DragAndDropItem.OnItemDragEndEvent += OnAnyItemDragEnd;             // Handle any item drag end
     }
@@ -144,6 +148,8 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                                         desc.destinationCell = sourceCell;
                                         // Send message with DragAndDrop info to parents GameObjects
                                         StartCoroutine(NotifyOnDragEnd(desc));
+
+
                                     }
                                     break;
                                 default:
