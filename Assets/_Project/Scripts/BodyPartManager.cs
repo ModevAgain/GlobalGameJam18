@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class BodyPartManager : MonoBehaviour {
 
+    [Header("States")]
     public bool RightLegActive;
     public bool LeftLegActive;
     public bool RightHandActive;
     public bool LeftHandActive;
+
+    [Header("References")]
+    public Animator Animator;
+
+    private readonly int _animHash_LeftLeg = Animator.StringToHash("LeftLeg");
+    private readonly int _animHash_RightLeg = Animator.StringToHash("RightLeg");
+    private readonly int _animHash_LeftHand = Animator.StringToHash("LeftHand");
+    private readonly int _animHash_RightHand = Animator.StringToHash("RightHand");
 
 
     // Use this for initialization
@@ -27,15 +36,19 @@ public class BodyPartManager : MonoBehaviour {
         {
             case Bodypart.PartType.LeftLeg:
                 LeftLegActive = isActive;
+                Animator.SetBool(_animHash_LeftLeg, false);
                 break;
             case Bodypart.PartType.RightLeg:
                 RightLegActive = isActive;
+                Animator.SetBool(_animHash_RightLeg, false);
                 break;
             case Bodypart.PartType.LeftHand:
                 LeftHandActive = isActive;
+                Animator.SetBool(_animHash_LeftHand, false);
                 break;
             case Bodypart.PartType.RightHand:
                 RightHandActive = isActive;
+                Animator.SetBool(_animHash_RightHand, false);
                 break;
         }
     }
