@@ -21226,6 +21226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShieldHolder: {fileID: 510041749}
+  Projectile: {fileID: 1198464103}
   RightLegActive: 0
   LeftLegActive: 0
   RightHandActive: 0
@@ -21924,6 +21925,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1008514840313228, guid: e60574bad25e8bc4d8f8f84d9f363e62,
     type: 2}
   m_PrefabInternal: {fileID: 1198464098}
+--- !u!114 &1198464103 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114535634616812738, guid: e60574bad25e8bc4d8f8f84d9f363e62,
+    type: 2}
+  m_PrefabInternal: {fileID: 1198464098}
+  m_Script: {fileID: 11500000, guid: 118d6b3428a6565428339df951661975, type: 3}
 --- !u!1 &1204406616
 GameObject:
   m_ObjectHideFlags: 0
@@ -38459,7 +38466,7 @@ SpriteRenderer:
   m_Size: {x: 256, y: 256}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2034823974
 GameObject:

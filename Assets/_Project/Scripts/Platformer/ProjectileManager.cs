@@ -53,7 +53,7 @@ public class ProjectileManager : MonoBehaviour {
     {
         NoLegs = true;
         _startPosition = new Vector3(1.25f, 0.017f, 0);
-        transform.localPosition = new Vector3(transform.parent.localPosition.x, 0.017f, 0);
+        transform.localPosition = new Vector3(1.25f, 0.017f, 0);
     }
 
     // Update is called once per frame
@@ -79,15 +79,12 @@ public class ProjectileManager : MonoBehaviour {
 
     public void ProjectileOutOfRange()
     {
-        Debug.Log(_projectileRange);
-        Debug.Log(transform.parent.position.x + _projectileRange);
-        Debug.Log(_startPosition);
         shoot = false;
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         if (NoLegs)
         {
-            transform.localPosition= new Vector3(transform.parent.localPosition.x + _startPosition.x, _startPosition.y, 0);
+            transform.localPosition = _startPosition; //new Vector3(transform.parent.localPosition.x, _startPosition.y, 0);
         }
         else
         {
