@@ -13,12 +13,14 @@ public class LevelManager : MonoBehaviour {
     private PlayerManager _playerMan;
     private BodyPartManager _bodyMan; 
     private PuzzleManager _puzzleMan;
+    private ShootManager _shootMan;
 
 	// Use this for initialization
 	void Start () {
         _playerMan = FindObjectOfType<PlayerManager>();
         _bodyMan = _playerMan.GetComponent<BodyPartManager>();
         _puzzleMan = FindObjectOfType<PuzzleManager>();
+        _shootMan = FindObjectOfType<ShootManager>();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +36,7 @@ public class LevelManager : MonoBehaviour {
     {
 
         _playerMan.StopRunning = true;
+        _shootMan.CanShoot = false;
 
         Sequence seq = DOTween.Sequence();
 

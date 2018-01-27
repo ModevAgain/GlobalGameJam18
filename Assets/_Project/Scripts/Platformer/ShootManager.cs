@@ -84,7 +84,11 @@ public class ShootManager : MonoBehaviour {
         ShootHighlight.DOFade(1, 0.6f).SetEase(Ease.InOutBounce).OnComplete(() =>
         {
             ShootHighlight.DOFade(0, 0.2f).SetEase(Ease.OutSine);
-            DOTween.To(x => FillImg.fillAmount = x, CurrentFillHeight, 0, 0.2f).OnComplete(() => CanShoot = true).OnComplete(() => JumpMan.CanJump = true);
+            DOTween.To(x => FillImg.fillAmount = x, CurrentFillHeight, 0, 0.2f).OnComplete(() =>
+            {
+                CanShoot = true;
+                JumpMan.CanJump = true;
+            });
         });
         _projectileMan.ShootProjectile();        
 
