@@ -83,6 +83,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shoot: 0
   ProjectileLow: {fileID: 21300000, guid: 9c43286e36030304e8309909cab2cfe1, type: 3}
+  Longrange: 15
+  Midrange: 10
+  Lowrange: 5
 --- !u!212 &212298887333500320
 SpriteRenderer:
   m_ObjectHideFlags: 1

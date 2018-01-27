@@ -50,7 +50,7 @@ public class ProjectileManager : MonoBehaviour {
         {
             transform.DOMoveX(transform.position.x + 0.2f, Time.deltaTime);
         }
-        if (transform.position.x >= transform.parent.position.x + 10)
+        if (transform.position.x >= transform.parent.position.x + _projectileRange)
         {
             ProjectileOutOfRange();
         }
