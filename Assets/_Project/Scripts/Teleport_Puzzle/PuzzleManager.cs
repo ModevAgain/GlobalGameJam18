@@ -11,13 +11,20 @@ public class PuzzleManager : MonoBehaviour {
     public RectTransform[] Puzzle_Tiles;
     private Dictionary<RectTransform, int> TileIndexMap;
     public Image FillImg;
+    public Sprite CrossSprite;
 
     [Header("Data")]
     [Space]
     public float PuzzleTime;
 
+    private BodyPartManager _bodyMan;
+    private LevelManager _levelMan;
+
 	// Use this for initialization
 	void Start () {
+
+        _bodyMan = FindObjectOfType<BodyPartManager>();
+        _levelMan = FindObjectOfType<LevelManager>();
 
         TileIndexMap = new Dictionary<RectTransform, int>();
 
@@ -32,55 +39,75 @@ public class PuzzleManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            ShufflePuzzle();
-            StartCoroutine(StartPuzzle());
-        }
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    ShufflePuzzle();
+        //    StartCoroutine(StartPuzzle());
+        //}
 
 	}
 
-    public void ShufflePuzzle(int level = 1)
+    public IEnumerator ShufflePuzzle(int level = 1)
     {
-        
-        if(level == 1)
+
+        yield return new WaitForSeconds(2);
+
+        GetComponentInParent<CanvasGroup>().DOFade(0, 0.2f).OnComplete(() =>
         {
-            //Right Hand to top left
-            Puzzle_Tiles[5].SetSiblingIndex(0);
+            transform.parent.DOShakeRotation(0.9f, 60, 7, 40).OnComplete(() =>
+            {
 
-            //head to top middle
-            Puzzle_Tiles[1].SetSiblingIndex(1);
+                if (level == 1)
+                {
+                    //Right Hand to top left
+                    Puzzle_Tiles[5].SetSiblingIndex(0);
 
-            //bottom middle to right top
-            Puzzle_Tiles[10].SetSiblingIndex(2);
+                    //head to top middle
+                    Puzzle_Tiles[1].SetSiblingIndex(1);
 
-            //right leg to left hand
-            Puzzle_Tiles[11].SetSiblingIndex(3);
+                    //bottom middle to right top
+                    Puzzle_Tiles[10].SetSiblingIndex(2);
 
-            //torso top to middle
-            Puzzle_Tiles[4].SetSiblingIndex(4);
+                    //right leg to left hand
+                    Puzzle_Tiles[11].SetSiblingIndex(3);
 
-            //left leg to right hand
-            Puzzle_Tiles[9].SetSiblingIndex(5);
+                    //torso top to middle
+                    Puzzle_Tiles[4].SetSiblingIndex(4);
 
-            //left middle stay
-            Puzzle_Tiles[6].SetSiblingIndex(6);
+                    //left leg to right hand
+                    Puzzle_Tiles[9].SetSiblingIndex(5);
 
-            //torso top to middle
-            Puzzle_Tiles[7].SetSiblingIndex(7);
+                    //left middle stay
+                    Puzzle_Tiles[6].SetSiblingIndex(6);
 
-            //left hand to right middle
-            Puzzle_Tiles[3].SetSiblingIndex(8);
+                    //torso top to middle
+                    Puzzle_Tiles[7].SetSiblingIndex(7);
 
-            //first tile to bottom left
-            Puzzle_Tiles[0].SetSiblingIndex(9);
+                    //left hand to right middle
+                    Puzzle_Tiles[3].SetSiblingIndex(8);
 
-            //right middle to bottom middle
-            Puzzle_Tiles[8].SetSiblingIndex(10);
+                    //first tile to bottom left
+                    Puzzle_Tiles[0].SetSiblingIndex(9);
 
-            //top right to right leg
-            Puzzle_Tiles[2].SetSiblingIndex(11);
-        }
+                    //right middle to bottom middle
+                    Puzzle_Tiles[8].SetSiblingIndex(10);
+
+                    //top right to right leg
+                    Puzzle_Tiles[2].SetSiblingIndex(11);
+
+                    GetComponentInParent<CanvasGroup>().DOFade(1, 0.2f).OnComplete(() =>
+                    {
+                        StartCoroutine(StartPuzzle());
+                    });
+                }
+            });
+        });
+
+        
+
+        
+
+        
         
     }
 
@@ -120,6 +147,12 @@ public class PuzzleManager : MonoBehaviour {
         {
             ProcessDmg(11);
         }
+
+        yield return new WaitForSeconds(2);
+
+
+        _levelMan.EndPuzzleAnim();
+
     }
 
     public void ProcessDmg(int index)
@@ -128,15 +161,23 @@ public class PuzzleManager : MonoBehaviour {
         {
             case 3: // Loose left hand
                 Debug.Log("Loose left hand");
+                transform.GetChild(3).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
+                _bodyMan.UpdateActiveParts(Bodypart.PartType.LeftHand);
                 break;
             case 5: // Loose right hand
                 Debug.Log("Loose right hand");
+                transform.GetChild(5).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
+                _bodyMan.UpdateActiveParts(Bodypart.PartType.RightHand);
                 break;
             case 9: // Loose left leg
                 Debug.Log("Loose left leg");
+                transform.GetChild(9).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
+                _bodyMan.UpdateActiveParts(Bodypart.PartType.LeftLeg);
                 break;
             case 11: // Loose right leg
                 Debug.Log("Loose right leg");
+                transform.GetChild(11).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
+                _bodyMan.UpdateActiveParts(Bodypart.PartType.RightLeg);
                 break;
         }
     }

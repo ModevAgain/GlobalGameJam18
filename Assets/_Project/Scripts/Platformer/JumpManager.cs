@@ -44,12 +44,6 @@ public class JumpManager : MonoBehaviour {
             CanJump = false;
             StartCoroutine(StartJumpFill());
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump(1);
-        }
-
 	}
 
     public IEnumerator StartJumpFill()

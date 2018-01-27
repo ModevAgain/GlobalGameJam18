@@ -37,6 +37,10 @@ public class BodyPartManager : MonoBehaviour {
 		
 	}
 
+    public void ResetAnim()
+    {
+        Animator.Play(Animator.StringToHash("Idle"));
+    }
 
     public void UpdateActiveParts(Bodypart.PartType part)
     {
