@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -12064,10 +12064,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4886968932747174, guid: cb09a36ccb7807143abe0e32f715a1e8, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.68234986
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 60221434227537486, guid: cb09a36ccb7807143abe0e32f715a1e8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 60221434227537486, guid: cb09a36ccb7807143abe0e32f715a1e8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cb09a36ccb7807143abe0e32f715a1e8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &678771963
@@ -12181,19 +12187,6 @@ Prefab:
     - target: {fileID: 4779492541732206, guid: 4fbccd625c3a03a45a15e53e57b088af, type: 2}
       propertyPath: m_RootOrder
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779492541732206, guid: 4fbccd625c3a03a45a15e53e57b088af, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.84748054
-      objectReference: {fileID: 0}
-    - target: {fileID: 4779492541732206, guid: 4fbccd625c3a03a45a15e53e57b088af, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.84748083
-      objectReference: {fileID: 0}
-    - target: {fileID: 212614592757114322, guid: 4fbccd625c3a03a45a15e53e57b088af,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fbccd625c3a03a45a15e53e57b088af, type: 2}
@@ -21107,6 +21100,8 @@ GameObject:
   - component: {fileID: 1148918579}
   - component: {fileID: 1148918582}
   - component: {fileID: 1148918583}
+  - component: {fileID: 1148918584}
+  - component: {fileID: 1148918585}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -21219,6 +21214,41 @@ MonoBehaviour:
   MovementSpeed: 4.27
   Projectile: {fileID: 1198464100}
   Ren: {fileID: 1570779413}
+--- !u!70 &1148918584
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148918578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
+--- !u!50 &1148918585
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148918578}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1154188237
 GameObject:
   m_ObjectHideFlags: 0
@@ -21769,20 +21799,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114535634616812738, guid: e60574bad25e8bc4d8f8f84d9f363e62,
+    - target: {fileID: 212298887333500320, guid: e60574bad25e8bc4d8f8f84d9f363e62,
         type: 2}
-      propertyPath: Longrange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114535634616812738, guid: e60574bad25e8bc4d8f8f84d9f363e62,
-        type: 2}
-      propertyPath: Midrange
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114535634616812738, guid: e60574bad25e8bc4d8f8f84d9f363e62,
-        type: 2}
-      propertyPath: Lowrange
-      value: 4
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e60574bad25e8bc4d8f8f84d9f363e62, type: 2}
@@ -23098,6 +23118,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 60551518099642038, guid: b18f8197e3ec2664cb42e006d6f13d3e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b18f8197e3ec2664cb42e006d6f13d3e, type: 2}
