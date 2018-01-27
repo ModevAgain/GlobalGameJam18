@@ -136,7 +136,7 @@ public class BodyPartManager : MonoBehaviour {
             DOTween.To(x => rot = x, 0, 1340, 2.5f).OnUpdate(() =>
             {
                 transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
-            });
+            }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim(); ;
             
 
             return;
