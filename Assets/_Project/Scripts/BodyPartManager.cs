@@ -13,6 +13,7 @@ public class BodyPartManager : MonoBehaviour {
     [Header("References")]
     public Animator Animator;
     private JumpManager _jumpMan;
+    private ShootManager _shootMan;
 
     private readonly int _animHash_LeftLeg = Animator.StringToHash("LeftLeg");
     private readonly int _animHash_RightLeg = Animator.StringToHash("RightLeg");
@@ -23,6 +24,7 @@ public class BodyPartManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _jumpMan = FindObjectOfType<JumpManager>();
+        _shootMan = FindObjectOfType<ShootManager>();       
 	}
 	
 	// Update is called once per frame
@@ -67,10 +69,30 @@ public class BodyPartManager : MonoBehaviour {
             case Bodypart.PartType.LeftHand:
                 LeftHandActive = false;
                 Animator.SetBool(_animHash_LeftHand, false);
+                if (!LeftHandActive && !RightHandActive)
+                {
+                    _shootMan.CurrentFillHeight = _shootMan.FillHeight_0Hands;
+                    _shootMan.SetAvailableHands(0.3f);
+                }
+                else
+                {
+                    _shootMan.CurrentFillHeight = _shootMan.FillHeight_1Hands;
+                    _shootMan.SetAvailableHands(0.65f);
+                }
                 break;
             case Bodypart.PartType.RightHand:
                 RightHandActive = false;
                 Animator.SetBool(_animHash_RightHand, false);
+                if (!LeftHandActive && !RightHandActive)
+                {
+                    _shootMan.CurrentFillHeight = _shootMan.FillHeight_0Hands;
+                    _shootMan.SetAvailableHands(0.3f);
+                }
+                else
+                {
+                    _shootMan.CurrentFillHeight = _shootMan.FillHeight_1Hands;
+                    _shootMan.SetAvailableHands(0.65f);
+                }
                 break;
         }
     }

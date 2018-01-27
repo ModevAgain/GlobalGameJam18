@@ -22577,6 +22577,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212298887333500320, guid: e60574bad25e8bc4d8f8f84d9f363e62,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e60574bad25e8bc4d8f8f84d9f363e62, type: 2}
   m_IsPrefabParent: 0
@@ -30455,6 +30460,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1607153638}
+  - component: {fileID: 1607153639}
   m_Layer: 5
   m_Name: Shoot-o-Meter
   m_TagString: Untagged
@@ -30485,6 +30491,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -461}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1607153639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607153637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab9239c49be30b448672c9f2d21ed48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FillImg: {fileID: 635089977}
+  ShootHighlight: {fileID: 132547259}
+  FillSpeed: 0.2
+  CurrentFillHeight: 0
+  FillHeight_2Hands: 1
+  FillHeight_1Hands: 0.65
+  FillHeight_0Hands: 0.3
+  CanShoot: 1
 --- !u!1 &1607241595
 GameObject:
   m_ObjectHideFlags: 0
