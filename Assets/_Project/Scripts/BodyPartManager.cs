@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class BodyPartManager : MonoBehaviour {
+
+    public GameObject ShieldHolder;
 
     [Header("States")]
     public bool RightLegActive;
@@ -22,7 +25,9 @@ public class BodyPartManager : MonoBehaviour {
     private readonly int _animHash_RightLeg = Animator.StringToHash("RightLeg");
     private readonly int _animHash_LeftHand = Animator.StringToHash("LeftHand");
     private readonly int _animHash_RightHand = Animator.StringToHash("RightHand");
-    private int _healthCounter = 3;
+    private int _healthCounter = 0;
+    private List<GameObject> _shieldList = new List<GameObject>();
+
 
     // Use this for initialization
     void Start () {
@@ -34,12 +39,18 @@ public class BodyPartManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
+        for (int i = 0; i < 3; i++)
+        {
+            _shieldList.Add(ShieldHolder.transform.GetChild(i).gameObject);
+        }
+            
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Animator.Play(Animator.StringToHash("Idle"));
         }
 
-        if (_healthCounter == 0)
+        if (_healthCounter == 3)
         {
             SceneManager.LoadScene("Main");
         }
@@ -112,22 +123,13 @@ public class BodyPartManager : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        
 
         if(col.tag == "Teleporter")
         {
             _playerMan.StopRunning = true;
 
             _playerMan.GetComponent<SpriteRenderer>().DOFade(0, 2f).SetDelay(0.5f);
-
-            //Sequence seqRot = DOTween.Sequence();
-
-            //seqRot.SetLoops(4);
-
-            //seqRot.Insert(0, transform.DOLocalRotate(new Vector3(0, 0, transform.localRotation.z + 180), 0.2f));
-            //seqRot.Insert(0.19f, transform.DOLocalRotate(new Vector3(0, 0, transform.localRotation.z + 180), 0.2f));
-            //seqRot.Insert(0.4f, transform.DOLocalRotate(new Vector3(0, 0, 0), 0f));
-
-            //seqRot.Play();
 
             float rot = 0;
 
@@ -148,7 +150,10 @@ public class BodyPartManager : MonoBehaviour {
 
         seq.Play();
 
-        _healthCounter--;
+        _shieldList[_healthCounter].transform.DOShakePosition(0.5f,10,1000).OnComplete(() => 
+        _shieldList[_healthCounter - 1].transform.GetChild(0).gameObject.SetActive(false));
+
+        _healthCounter++;
         Debug.Log(_healthCounter);
 
     }
