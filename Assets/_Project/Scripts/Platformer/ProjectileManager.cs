@@ -15,6 +15,7 @@ public class ProjectileManager : MonoBehaviour {
     public bool shoot = false;
     public Sprite ProjectileLow;
     private int _projectileRange;
+    public bool NoLegs = false;
 
     public int Longrange;
     public int Midrange;
@@ -28,8 +29,11 @@ public class ProjectileManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-        _startPosition = transform.position;
+        _projectileRange = Longrange;
+        if (!NoLegs)
+        {
+            _startPosition = transform.position;
+        }
 	}
 
     public void SetShootRange(ShootRange range)
@@ -45,8 +49,15 @@ public class ProjectileManager : MonoBehaviour {
             _projectileRange = Longrange;
     }
 	
-	// Update is called once per frame
-	void Update () {
+    public void SetNoLegPosition()
+    {
+        NoLegs = true;
+        _startPosition = new Vector3(1.25f, 0.017f, 0);
+        transform.localPosition = new Vector3(1.25f, 0.017f, 0);
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (shoot)
         {
             if (!OnTheWay)
@@ -71,7 +82,14 @@ public class ProjectileManager : MonoBehaviour {
         shoot = false;
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
-        transform.position = new Vector3(transform.parent.position.x + _startPosition.x, _startPosition.y,0);
+        if (NoLegs)
+        {
+            transform.localPosition = _startPosition; //new Vector3(transform.parent.localPosition.x, _startPosition.y, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.parent.position.x + _startPosition.x, _startPosition.y, 0);
+        }
         OnTheWay = false;
         
     }

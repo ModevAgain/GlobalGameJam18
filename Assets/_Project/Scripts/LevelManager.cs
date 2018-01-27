@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour {
     private BodyPartManager _bodyMan; 
     private PuzzleManager _puzzleMan;
     private ShootManager _shootMan;
+    private JumpManager _jumpMan;
 
     private bool _inAnim;
 
@@ -30,6 +31,7 @@ public class LevelManager : MonoBehaviour {
         _puzzleMan = FindObjectOfType<PuzzleManager>();
         _shootMan = FindObjectOfType<ShootManager>();
         CG_Puzzle.blocksRaycasts = false;
+        _jumpMan = FindObjectOfType<JumpManager>();
 	}
 	
 	// Update is called once per frame
@@ -55,6 +57,7 @@ public class LevelManager : MonoBehaviour {
 
         _playerMan.StopRunning = true;
         _shootMan.CanShoot = false;
+        _jumpMan.CanJump = false;
 
         Sequence seq = DOTween.Sequence();
 
