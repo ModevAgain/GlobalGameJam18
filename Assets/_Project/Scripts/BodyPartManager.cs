@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class BodyPartManager : MonoBehaviour {
 
     public GameObject ShieldHolder;
+    public ProjectileManager Projectile;
 
     [Header("States")]
     public bool RightLegActive;
@@ -72,6 +73,8 @@ public class BodyPartManager : MonoBehaviour {
                 if(!LeftLegActive && !RightLegActive)
                 {
                     _jumpMan.FillSpeed_Current = _jumpMan.FillSpeed_0Legs;
+                    Projectile.SetNoLegPosition();
+                    
                 }
                 else
                 {
