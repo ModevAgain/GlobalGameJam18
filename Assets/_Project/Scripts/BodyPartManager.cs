@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class BodyPartManager : MonoBehaviour {
 
@@ -19,7 +21,7 @@ public class BodyPartManager : MonoBehaviour {
     private readonly int _animHash_RightLeg = Animator.StringToHash("RightLeg");
     private readonly int _animHash_LeftHand = Animator.StringToHash("LeftHand");
     private readonly int _animHash_RightHand = Animator.StringToHash("RightHand");
-
+    private int _healthCounter = 3;
 
     // Use this for initialization
     void Start () {
@@ -34,7 +36,11 @@ public class BodyPartManager : MonoBehaviour {
         {
             Animator.Play(Animator.StringToHash("Idle"));
         }
-		
+
+        if (_healthCounter == 0)
+        {
+            SceneManager.LoadScene("Main");
+        }
 	}
 
     public void ResetAnim()
@@ -101,4 +107,19 @@ public class BodyPartManager : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+
+        Sequence seq = DOTween.Sequence();
+        seq.SetLoops(5);
+
+        seq.Insert(0, GetComponent<SpriteRenderer>().DOFade(0, 0.05f).SetEase(Ease.OutBack));
+        seq.Insert(0.05f, GetComponent<SpriteRenderer>().DOFade(1, 0.05f).SetEase(Ease.OutBack));
+
+        seq.Play();
+
+        _healthCounter--;
+        Debug.Log(_healthCounter);
+
+    }
 }

@@ -6,7 +6,8 @@ using DG.Tweening;
 
 public class ShootManager : MonoBehaviour {
 
-	
+    public JumpManager JumpMan;
+
     [Header("References")]
     public Image FillImg;
     public Image ShootHighlight;
@@ -47,6 +48,7 @@ public class ShootManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             CanShoot = false;
+            JumpMan.CanJump = false;
             StartCoroutine(StartShootFill());
         }
 
@@ -82,7 +84,7 @@ public class ShootManager : MonoBehaviour {
         ShootHighlight.DOFade(1, 0.6f).SetEase(Ease.InOutBounce).OnComplete(() =>
         {
             ShootHighlight.DOFade(0, 0.2f).SetEase(Ease.OutSine);
-            DOTween.To(x => FillImg.fillAmount = x, CurrentFillHeight, 0, 0.2f).OnComplete(() => CanShoot = true);
+            DOTween.To(x => FillImg.fillAmount = x, CurrentFillHeight, 0, 0.2f).OnComplete(() => CanShoot = true).OnComplete(() => JumpMan.CanJump = true);
         });
         _projectileMan.ShootProjectile();        
 

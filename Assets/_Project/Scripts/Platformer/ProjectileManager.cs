@@ -50,7 +50,7 @@ public class ProjectileManager : MonoBehaviour {
         {
             transform.DOMoveX(transform.position.x + 0.2f, Time.deltaTime);
         }
-        if (transform.position.x >= transform.parent.position.x + 10)
+        if (transform.position.x >= transform.parent.position.x + _projectileRange)
         {
             ProjectileOutOfRange();
         }
@@ -60,19 +60,19 @@ public class ProjectileManager : MonoBehaviour {
     {
         shoot = true;
         GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     private void ProjectileOutOfRange()
     {
         shoot = false;
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         transform.position = new Vector3(transform.parent.position.x + _startPosition.x, _startPosition.y,0);       
         
     }
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "destructible")
         {
