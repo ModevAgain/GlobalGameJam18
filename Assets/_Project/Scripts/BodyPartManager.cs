@@ -12,6 +12,7 @@ public class BodyPartManager : MonoBehaviour {
 
     [Header("References")]
     public Animator Animator;
+    private JumpManager _jumpMan;
 
     private readonly int _animHash_LeftLeg = Animator.StringToHash("LeftLeg");
     private readonly int _animHash_RightLeg = Animator.StringToHash("RightLeg");
@@ -21,7 +22,7 @@ public class BodyPartManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        _jumpMan = FindObjectOfType<JumpManager>();
 	}
 	
 	// Update is called once per frame
@@ -35,24 +36,40 @@ public class BodyPartManager : MonoBehaviour {
 	}
 
 
-    public void UpdateActiveParts(Bodypart.PartType part, bool isActive = false)
+    public void UpdateActiveParts(Bodypart.PartType part)
     {
         switch (part)
         {
             case Bodypart.PartType.LeftLeg:
-                LeftLegActive = isActive;
+                LeftLegActive = false;
                 Animator.SetBool(_animHash_LeftLeg, false);
+                if(!LeftLegActive && !RightLegActive)
+                {
+                    _jumpMan.FillSpeed_Current = _jumpMan.FillSpeed_0Legs;
+                }
+                else
+                {
+                    _jumpMan.FillSpeed_Current = _jumpMan.FillSpeed_1Legs;
+                }
                 break;
             case Bodypart.PartType.RightLeg:
-                RightLegActive = isActive;
+                RightLegActive = false;
                 Animator.SetBool(_animHash_RightLeg, false);
+                if (!LeftLegActive && !RightLegActive)
+                {
+                    _jumpMan.FillSpeed_Current = _jumpMan.FillSpeed_0Legs;
+                }
+                else
+                {
+                    _jumpMan.FillSpeed_Current = _jumpMan.FillSpeed_1Legs;
+                }
                 break;
             case Bodypart.PartType.LeftHand:
-                LeftHandActive = isActive;
+                LeftHandActive = false;
                 Animator.SetBool(_animHash_LeftHand, false);
                 break;
             case Bodypart.PartType.RightHand:
-                RightHandActive = isActive;
+                RightHandActive = false;
                 Animator.SetBool(_animHash_RightHand, false);
                 break;
         }

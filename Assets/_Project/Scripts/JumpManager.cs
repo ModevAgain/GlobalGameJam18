@@ -6,14 +6,31 @@ using DG.Tweening;
 
 public class JumpManager : MonoBehaviour {
 
+    [Header("References")]
     public Image FillImg;
-    public float FillSpeed;
+    public Image JumpHighlight;
+
+
+    [Header("Data")]
+    [Range(1,10)]
+    public float JumpHeight;
+
+    public float FillSpeed_Current;
+
+    public float FillSpeed_2Legs;
+    public float FillSpeed_1Legs;
+    public float FillSpeed_0Legs;
 
     public bool CanJump = true;
 
+    private Transform _player;
+    private PlayerManager _playerMan;
+
 	// Use this for initialization
 	void Start () {
-		
+        _playerMan = FindObjectOfType<PlayerManager>();
+        _player = _playerMan.transform;
+        FillSpeed_Current = FillSpeed_2Legs;
 	}
 	
 	// Update is called once per frame
@@ -28,6 +45,11 @@ public class JumpManager : MonoBehaviour {
             StartCoroutine(StartJumpFill());
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump(1);
+        }
+
 	}
 
     public IEnumerator StartJumpFill()
@@ -36,7 +58,8 @@ public class JumpManager : MonoBehaviour {
 
         yield return 0;
 
-        DOTween.To(x => FillImg.fillAmount = x, 0, 1, FillSpeed)
+        DOTween.To(x => FillImg.fillAmount = x, 0, 1, FillSpeed_Current)
+            .SetEase(Ease.Linear)
             .SetId("JumpFill")
             .OnUpdate(() =>
             {
@@ -58,6 +81,15 @@ public class JumpManager : MonoBehaviour {
     public void Jump(float strength)
     {
         Debug.Log("Jump with strength: " + strength);
-        CanJump = true;
+
+        JumpHighlight.DOFade(1, 0.6f).SetEase(Ease.InOutBounce).OnComplete(() =>
+         {
+             JumpHighlight.DOFade(0, 0.2f).SetEase(Ease.OutSine);
+             DOTween.To(x => FillImg.fillAmount = x, strength, 0, 0.2f);
+         });
+
+        _player.DOLocalJump(Vector3.zero, JumpHeight * strength , 1, 1).OnComplete(() => CanJump = true);       
+
+        
     }
 }
