@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum ShootRange
+{
+    SHORT,
+    MID,
+    LONG
+};
+
 public class ProjectileManager : MonoBehaviour {
 
     public bool shoot = false;
+    public Sprite ProjectileLow;
     private int _projectileRange;
 
     private Vector3 _startPosition;
 
-    public enum ShootRange
-    {
-        SHORT,
-        MID,
-        LONG
-    };
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +29,10 @@ public class ProjectileManager : MonoBehaviour {
     void SetShootRange(ShootRange range)
     {
         if (range == ShootRange.SHORT)
+        {
+            GetComponent<SpriteRenderer>().sprite = ProjectileLow;
             _projectileRange = 5;
+        }
         else if (range == ShootRange.MID)
             _projectileRange = 10;
         else if (range == ShootRange.LONG)
@@ -49,17 +55,17 @@ public class ProjectileManager : MonoBehaviour {
     {
         shoot = true;
         GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     private void ProjectileOutOfRange()
     {
         shoot = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
         transform.position = new Vector3(transform.parent.position.x + _startPosition.x, _startPosition.y,0);       
         
     }
-
-    
 
     private void OnTriggerEnter(Collider col)
     {
