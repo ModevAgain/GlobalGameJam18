@@ -104,9 +104,11 @@ public class LevelManager : MonoBehaviour {
         seq.OnComplete(() =>
         {
 
+
             _playerMan.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
             _playerMan.GetComponent<SpriteRenderer>().DOFade(1, 0f);
             _playerMan.transform.DOScale(Vector3.one, 0.2f).OnComplete(() => _playerMan.StopRunning = false);
+
 
         });
 
