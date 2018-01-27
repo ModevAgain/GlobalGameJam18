@@ -77,7 +77,7 @@ public class ShootManager : MonoBehaviour {
     public void Shoot(float shootRange)
     {
         ShootRange range =    shootRange > 0.6f ?   ShootRange.LONG :
-                            shootRange > 0.3f ?     ShootRange.MID :    
+                            shootRange > 0.35f ?     ShootRange.MID :    
                                                     ShootRange.SHORT;
 
         _projectileMan.SetShootRange(range);

@@ -130,15 +130,15 @@ public class BodyPartManager : MonoBehaviour {
             _playerMan.StopRunning = true;
 
             _playerMan.GetComponent<SpriteRenderer>().DOFade(0, 2f).SetDelay(0.5f);
+            _playerMan.transform.DOScale(0, 2f).SetDelay(0.5f);
 
             float rot = 0;
 
             DOTween.To(x => rot = x, 0, 1340, 2.5f).OnUpdate(() =>
             {
                 transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
-            }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim(); ;
+            }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim());
             
-
             return;
         }
 
