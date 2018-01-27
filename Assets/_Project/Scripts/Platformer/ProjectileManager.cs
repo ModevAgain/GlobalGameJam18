@@ -16,6 +16,11 @@ public class ProjectileManager : MonoBehaviour {
     public Sprite ProjectileLow;
     private int _projectileRange;
 
+    public int Longrange;
+    public int Midrange;
+    public int Lowrange;
+
+
     private Vector3 _startPosition;
 
 
@@ -31,12 +36,12 @@ public class ProjectileManager : MonoBehaviour {
         if (range == ShootRange.SHORT)
         {
             GetComponent<SpriteRenderer>().sprite = ProjectileLow;
-            _projectileRange = 5;
+            _projectileRange = Lowrange;
         }
         else if (range == ShootRange.MID)
-            _projectileRange = 10;
+            _projectileRange = Midrange;
         else if (range == ShootRange.LONG)
-            _projectileRange = 15;
+            _projectileRange = Longrange;
     }
 	
 	// Update is called once per frame
