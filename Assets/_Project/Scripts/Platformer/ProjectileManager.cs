@@ -20,8 +20,9 @@ public class ProjectileManager : MonoBehaviour {
     public int Midrange;
     public int Lowrange;
 
+    public bool OnTheWay;
 
-    private Vector3 _startPosition;
+    public Vector3 _startPosition;
 
 
 
@@ -48,6 +49,8 @@ public class ProjectileManager : MonoBehaviour {
 	void Update () {
         if (shoot)
         {
+            if (!OnTheWay)
+                OnTheWay = true;
             transform.DOMoveX(transform.position.x + 0.2f, Time.deltaTime);
         }
         if (transform.position.x >= transform.parent.position.x + _projectileRange)
@@ -63,12 +66,13 @@ public class ProjectileManager : MonoBehaviour {
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    private void ProjectileOutOfRange()
+    public void ProjectileOutOfRange()
     {
         shoot = false;
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
-        transform.position = new Vector3(transform.parent.position.x + _startPosition.x, _startPosition.y,0);       
+        transform.position = new Vector3(transform.parent.position.x + _startPosition.x, _startPosition.y,0);
+        OnTheWay = false;
         
     }
 

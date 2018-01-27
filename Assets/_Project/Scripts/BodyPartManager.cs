@@ -16,6 +16,7 @@ public class BodyPartManager : MonoBehaviour {
     public Animator Animator;
     private JumpManager _jumpMan;
     private ShootManager _shootMan;
+    private PlayerManager _playerMan;
 
     private readonly int _animHash_LeftLeg = Animator.StringToHash("LeftLeg");
     private readonly int _animHash_RightLeg = Animator.StringToHash("RightLeg");
@@ -26,7 +27,8 @@ public class BodyPartManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _jumpMan = FindObjectOfType<JumpManager>();
-        _shootMan = FindObjectOfType<ShootManager>();       
+        _shootMan = FindObjectOfType<ShootManager>();
+        _playerMan = GetComponent<PlayerManager>();
 	}
 	
 	// Update is called once per frame
@@ -46,6 +48,7 @@ public class BodyPartManager : MonoBehaviour {
     public void ResetAnim()
     {
         Animator.Play(Animator.StringToHash("Idle"));
+        _shootMan.CanShoot = true;
     }
 
     public void UpdateActiveParts(Bodypart.PartType part)
@@ -109,6 +112,33 @@ public class BodyPartManager : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+
+        if(col.tag == "Teleporter")
+        {
+            _playerMan.StopRunning = true;
+
+            _playerMan.GetComponent<SpriteRenderer>().DOFade(0, 2f).SetDelay(0.5f);
+
+            //Sequence seqRot = DOTween.Sequence();
+
+            //seqRot.SetLoops(4);
+
+            //seqRot.Insert(0, transform.DOLocalRotate(new Vector3(0, 0, transform.localRotation.z + 180), 0.2f));
+            //seqRot.Insert(0.19f, transform.DOLocalRotate(new Vector3(0, 0, transform.localRotation.z + 180), 0.2f));
+            //seqRot.Insert(0.4f, transform.DOLocalRotate(new Vector3(0, 0, 0), 0f));
+
+            //seqRot.Play();
+
+            float rot = 0;
+
+            DOTween.To(x => rot = x, 0, 1340, 2.5f).OnUpdate(() =>
+            {
+                transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
+            });
+            
+
+            return;
+        }
 
         Sequence seq = DOTween.Sequence();
         seq.SetLoops(5);

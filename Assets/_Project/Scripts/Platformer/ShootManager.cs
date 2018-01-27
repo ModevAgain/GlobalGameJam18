@@ -47,6 +47,9 @@ public class ShootManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if (_projectileMan.OnTheWay)
+                return;
+
             CanShoot = false;
             JumpMan.CanJump = false;
             StartCoroutine(StartShootFill());
