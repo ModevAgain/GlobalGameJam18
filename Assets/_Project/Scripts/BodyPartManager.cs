@@ -50,7 +50,7 @@ public class BodyPartManager : MonoBehaviour {
             Animator.Play(Animator.StringToHash("Idle"));
         }
 
-        if (_healthCounter == 3)
+        if (_shieldList[2].transform.GetChild(0).gameObject.activeSelf == false)
         {
             SceneManager.LoadScene("Main");
         }
@@ -150,11 +150,13 @@ public class BodyPartManager : MonoBehaviour {
 
         seq.Play();
 
-        _shieldList[_healthCounter].transform.DOShakePosition(0.5f,10,1000).OnComplete(() => 
-        _shieldList[_healthCounter - 1].transform.GetChild(0).gameObject.SetActive(false));
+        if (col.tag != "Teleporter")
+        {
+            _shieldList[_healthCounter].transform.DOShakePosition(0.5f, 10, 1000).OnComplete(() =>
+          _shieldList[_healthCounter - 1].transform.GetChild(0).gameObject.SetActive(false));
 
-        _healthCounter++;
-        Debug.Log(_healthCounter);
+            _healthCounter++;
+        }
 
     }
 }
