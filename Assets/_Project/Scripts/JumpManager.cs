@@ -88,7 +88,7 @@ public class JumpManager : MonoBehaviour {
              DOTween.To(x => FillImg.fillAmount = x, strength, 0, 0.2f);
          });
 
-        _player.DOLocalJump(Vector3.zero, JumpHeight * strength , 1, 1).OnComplete(() => CanJump = true);       
+        _player.DOLocalJump(new Vector3(0 ,- 1.54f,0), JumpHeight * strength , 1, 1).OnComplete(() => CanJump = true);       
 
         
     }
