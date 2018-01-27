@@ -54,6 +54,11 @@ public class BodyPartManager : MonoBehaviour {
         {
             SceneManager.LoadScene("Main");
         }
+
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    UpdateActiveParts(Bodypart.PartType.LeftHand)
+        //}
 	}
 
     public void ResetAnim()
@@ -127,6 +132,8 @@ public class BodyPartManager : MonoBehaviour {
 
         if(col.tag == "Teleporter")
         {
+            Debug.Log("collided mit Teleporter");
+
             _playerMan.StopRunning = true;
 
             _playerMan.GetComponent<SpriteRenderer>().DOFade(0, 2f).SetDelay(0.5f);
@@ -134,7 +141,7 @@ public class BodyPartManager : MonoBehaviour {
 
             float rot = 0;
 
-            DOTween.To(x => rot = x, 0, 1340, 2.5f).OnUpdate(() =>
+            DOTween.To(x => rot = x, 0, 1080, 2.5f).OnUpdate(() =>
             {
                 transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
             }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim());
@@ -156,5 +163,24 @@ public class BodyPartManager : MonoBehaviour {
         _healthCounter++;
         Debug.Log(_healthCounter);
 
+    }
+
+
+
+    public void MFunction()
+    {
+        _playerMan.StopRunning = true;
+
+        _playerMan.GetComponent<SpriteRenderer>().DOFade(0, 2f).SetDelay(0.5f);
+        _playerMan.transform.DOScale(0, 2f).SetDelay(0.5f);
+
+        float rot = 0;
+
+        DOTween.To(x => rot = x, 0, 1080, 2.5f).OnUpdate(() =>
+        {
+            transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
+        }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim());
+
+        
     }
 }

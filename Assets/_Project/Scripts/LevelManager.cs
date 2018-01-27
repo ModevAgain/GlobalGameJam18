@@ -29,13 +29,17 @@ public class LevelManager : MonoBehaviour {
         _bodyMan = _playerMan.GetComponent<BodyPartManager>();
         _puzzleMan = FindObjectOfType<PuzzleManager>();
         _shootMan = FindObjectOfType<ShootManager>();
+        CG_Puzzle.blocksRaycasts = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         if (Input.GetKeyDown(KeyCode.M))
-            StartPuzzleAnim();
+        {
+            _bodyMan.MFunction();
+        }
+            //StartPuzzleAnim();_
 
 	}
 
@@ -44,6 +48,8 @@ public class LevelManager : MonoBehaviour {
     {
         if (_inAnim)
             return;
+
+        Debug.Log("Start Puzzle Animation");
 
         _inAnim = true;
 
@@ -72,7 +78,10 @@ public class LevelManager : MonoBehaviour {
     {
         //set player pos to next level
 
+        Debug.Log("End Puzzle Animation");
+
         _bodyMan.ResetAnim();
+        _shootMan.FillImg.DOFillAmount(0, 0);
 
         switch (CurrentLevel)
         {
@@ -85,26 +94,21 @@ public class LevelManager : MonoBehaviour {
                 break;
         }
 
+
+
         Sequence seq = DOTween.Sequence();
 
         seq.OnComplete(() =>
         {
 
-            
-            float rot = 0;
-
-            DOTween.To(x => rot = x, 0, 1340, 2.5f).OnUpdate(() =>
-            {
-                transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
-            }).OnComplete(() => _playerMan.StopRunning = false);
-
-            _playerMan.GetComponent<SpriteRenderer>().DOFade(1, 2f);
-            _playerMan.transform.DOScale(1, 2f);
+            _playerMan.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+            _playerMan.GetComponent<SpriteRenderer>().DOFade(1, 0f);
+            _playerMan.transform.DOScale(Vector3.one, 0.2f).OnComplete(() => _playerMan.StopRunning = false);
 
         });
 
         seq.Insert(0.1f, Rect_Puzzle.DOAnchorPosY(-300, 0.6f).SetEase(Ease.OutSine));
-        seq.Insert(0.1f, Rect_Puzzle.DOScale(Vector2.zero, 0.6f).SetEase(Ease.OutSine));
+        seq.Insert(0.1f, Rect_Puzzle.DOScale(new Vector3(1,1,1), 0.6f).SetEase(Ease.OutSine).OnComplete(() => Debug.Log("Scale Up abgeschlossen")));
         seq.Insert(0, CG_Puzzle.DOFade(0, 0.6f));
         seq.Insert(0.6f, BackgroundImg.DOFade(0, 0.2f));
     }
@@ -112,5 +116,6 @@ public class LevelManager : MonoBehaviour {
     public void StartPuzzleGame()
     {
         StartCoroutine(_puzzleMan.ShufflePuzzle());
+        CG_Puzzle.blocksRaycasts = true;
     }
 }

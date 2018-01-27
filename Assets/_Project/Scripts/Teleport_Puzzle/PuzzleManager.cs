@@ -127,6 +127,8 @@ public class PuzzleManager : MonoBehaviour {
             yield return 0;
         }
 
+        GetComponentInParent<CanvasGroup>().blocksRaycasts = false;
+
         //lookup Hand
         //Debug.Log(Puzzle_Tiles[TileIndexMap[Puzzle_Tiles[3]]].GetComponentInChildren<Bodypart>().Part.ToString());
 
