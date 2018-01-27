@@ -19736,6 +19736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945de91ac6e12274fbf59b7a3b59bcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShootMan: {fileID: 1607153639}
   FillImg: {fileID: 1046910952}
   JumpHighlight: {fileID: 1128839527}
   JumpHeight: 4
@@ -29552,6 +29553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab9239c49be30b448672c9f2d21ed48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JumpMan: {fileID: 1054992536}
   FillImg: {fileID: 635089977}
   ShootHighlight: {fileID: 132547259}
   FillSpeed: 0.2
