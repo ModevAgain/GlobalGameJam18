@@ -24,6 +24,5 @@ public class PlayerManager : MonoBehaviour {
 
         _parent.DOMoveX(_parent.position.x + MovementSpeed * Time.deltaTime,0);
         Ren.material.mainTextureOffset = new Vector2(Ren.material.mainTextureOffset.x + Time.deltaTime/MovementSpeed,0);
-
 	}
 }
