@@ -71,9 +71,10 @@ public class ShootManager : MonoBehaviour {
 
     public void Shoot(float shootRange)
     {
-        ProjectileManager.ShootRange range =    shootRange > 0.6f ?   ProjectileManager.ShootRange.LONG :
-                                                shootRange > 0.3f ?   ProjectileManager.ShootRange.MID :    
-                                                                    ProjectileManager.ShootRange.SHORT;
+        ShootRange range =    shootRange > 0.6f ?   ShootRange.LONG :
+                            shootRange > 0.3f ?     ShootRange.MID :    
+                                                    ShootRange.SHORT;
+
         _projectileMan.SetShootRange(range);
 
         Debug.Log("Shoot with Range: " + range);
@@ -81,10 +82,10 @@ public class ShootManager : MonoBehaviour {
         ShootHighlight.DOFade(1, 0.6f).SetEase(Ease.InOutBounce).OnComplete(() =>
         {
             ShootHighlight.DOFade(0, 0.2f).SetEase(Ease.OutSine);
-            DOTween.To(x => FillImg.fillAmount = x, CurrentFillHeight, 0, 0.2f);
+            DOTween.To(x => FillImg.fillAmount = x, CurrentFillHeight, 0, 0.2f).OnComplete(() => CanShoot = true);
         });
-
         _projectileMan.ShootProjectile();        
+
     }
 
     public void SetAvailableHands(float height)

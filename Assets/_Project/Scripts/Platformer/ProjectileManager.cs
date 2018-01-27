@@ -31,7 +31,7 @@ public class ProjectileManager : MonoBehaviour {
         _startPosition = transform.position;
 	}
 
-    void SetShootRange(ShootRange range)
+    public void SetShootRange(ShootRange range)
     {
         if (range == ShootRange.SHORT)
         {
