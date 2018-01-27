@@ -18,7 +18,7 @@ public class DestrucibleManager : MonoBehaviour {
     
     public void FadeAndKill()
     {
-        Debug.Log("test");
+        GetComponent<BoxCollider2D>().enabled = false;
 
         Sequence seq = DOTween.Sequence();
         seq.SetLoops(5);
