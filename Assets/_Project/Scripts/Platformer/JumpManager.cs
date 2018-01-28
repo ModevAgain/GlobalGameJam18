@@ -44,7 +44,7 @@ public class JumpManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             CanJump = false;
-            ShootMan.CanShoot = false;
+            //ShootMan.CanShoot = false;
             StartCoroutine(StartJumpFill());
         }
 	}
