@@ -41,7 +41,7 @@ public class JumpManager : MonoBehaviour {
         if (!CanJump)
             return;
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             CanJump = false;
             ShootMan.CanShoot = false;
@@ -60,7 +60,7 @@ public class JumpManager : MonoBehaviour {
             .SetId("JumpFill")
             .OnUpdate(() =>
             {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
                 {
                     finalFill = FillImg.fillAmount;
                     Jump(finalFill);

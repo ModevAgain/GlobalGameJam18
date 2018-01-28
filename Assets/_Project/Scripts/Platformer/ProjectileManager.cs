@@ -20,7 +20,7 @@ public class ProjectileManager : MonoBehaviour {
     public int Longrange;
     public int Midrange;
     public int Lowrange;
-
+    public float ProjectileSpeed;
     public bool OnTheWay;
 
     public Vector3 _startPosition;
@@ -38,6 +38,21 @@ public class ProjectileManager : MonoBehaviour {
 
         _playerTrans = FindObjectOfType<PlayerManager>().transform;
 	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (shoot)
+        {
+            if (!OnTheWay)
+                OnTheWay = true;
+            transform.DOMoveX(transform.position.x + ProjectileSpeed, Time.deltaTime);
+        }
+        if (transform.position.x >= _playerTrans.position.x + _projectileRange)
+        {
+            ProjectileOutOfRange();
+        }
+    }
 
     public void SetShootRange(ShootRange range)
     {
@@ -59,20 +74,6 @@ public class ProjectileManager : MonoBehaviour {
         transform.localPosition = new Vector3(1.25f, 0.017f, 0);
     }
 
-    // Update is called once per frame
-    void Update () {
-        if (shoot)
-        {
-            if (!OnTheWay)
-                OnTheWay = true;
-            transform.DOMoveX(transform.position.x + 0.2f, Time.deltaTime);
-        }
-        if (transform.position.x >= _playerTrans.position.x + _projectileRange)
-        {
-            ProjectileOutOfRange();
-        }
-    }
-
     public void ShootProjectile()
     {
         shoot = true;
@@ -87,7 +88,7 @@ public class ProjectileManager : MonoBehaviour {
         GetComponent<BoxCollider2D>().enabled = false;
         if (NoLegs)
         {
-            transform.localPosition = _startPosition; //new Vector3(transform.parent.localPosition.x, _startPosition.y, 0);
+            transform.localPosition = _startPosition;
         }
         else
         {
