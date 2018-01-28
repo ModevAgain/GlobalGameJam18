@@ -92,7 +92,7 @@ public class ProjectileManager : MonoBehaviour {
         }
         else
         {
-            transform.position = new Vector3(_playerTrans.position.x + _startPosition.x, _startPosition.y, 0);
+            transform.localPosition = new Vector3(_startPosition.x, _startPosition.y, 0);
         }
         OnTheWay = false;
         
