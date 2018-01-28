@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Cursor.visible = false;
         _playerMan = FindObjectOfType<PlayerManager>();
         _bodyMan = _playerMan.GetComponent<BodyPartManager>();
         _shootMan = FindObjectOfType<ShootManager>();
@@ -85,6 +86,7 @@ public class LevelManager : MonoBehaviour {
 
     public void EndPuzzleAnim()
     {
+        Cursor.visible = false;
         //set player pos to next level
 
         Debug.Log("End Puzzle Animation");
@@ -128,6 +130,7 @@ public class LevelManager : MonoBehaviour {
 
     public void StartPuzzleGame()
     {
+        Cursor.visible = true;
         StartCoroutine(_puzzleMan[CurrentLevel - 1].ShufflePuzzle());
         CG_Puzzle.blocksRaycasts = true;
     }

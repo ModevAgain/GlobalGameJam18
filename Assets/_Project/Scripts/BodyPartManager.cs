@@ -163,6 +163,8 @@ public class BodyPartManager : MonoBehaviour {
             return;
         }
 
+        col.enabled = false;
+
         Sequence seq = DOTween.Sequence();
         seq.SetLoops(5);
 
