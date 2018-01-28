@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+[RequireComponent(typeof(AudioSource))]
 public class JumpManager : MonoBehaviour {
 
     public ShootManager ShootMan;
@@ -28,11 +29,15 @@ public class JumpManager : MonoBehaviour {
     private Transform _player;
     private PlayerManager _playerMan;
 
+    AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
         _playerMan = FindObjectOfType<PlayerManager>();
         _player = _playerMan.transform;
         FillSpeed_Current = FillSpeed_2Legs;
+
+        audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -92,6 +97,6 @@ public class JumpManager : MonoBehaviour {
             _player.localPosition = new Vector3(0, -1.54f, 0);
         });
 
-
+        audio.Play();
     }
 }

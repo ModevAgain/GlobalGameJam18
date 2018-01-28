@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class BodyPartManager : MonoBehaviour {
 
     public GameObject ShieldHolder;
@@ -29,6 +30,7 @@ public class BodyPartManager : MonoBehaviour {
     private int _healthCounter = 0;
     private List<GameObject> _shieldList = new List<GameObject>();
 
+    public AudioSource audio;
 
     // Use this for initialization
     void Start () {
@@ -36,6 +38,7 @@ public class BodyPartManager : MonoBehaviour {
         _shootMan = FindObjectOfType<ShootManager>();
         _playerMan = GetComponent<PlayerManager>();
         _projectile = FindObjectOfType<ProjectileManager>();
+
 	}
 	
 	// Update is called once per frame
@@ -172,6 +175,12 @@ public class BodyPartManager : MonoBehaviour {
 
         _healthCounter++;
         Debug.Log(_healthCounter);
+
+        Debug.Log(col.gameObject.name);
+
+        audio.DOFade(1, 0.1f);
+        audio.Play();
+        
 
     }
 

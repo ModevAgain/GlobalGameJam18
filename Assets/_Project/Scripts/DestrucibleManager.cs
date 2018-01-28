@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(AudioSource))]
 public class DestrucibleManager : MonoBehaviour {
+
+    AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
-		
+        audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -30,6 +33,6 @@ public class DestrucibleManager : MonoBehaviour {
         seq.Insert(0.05f, GetComponent<SpriteRenderer>().DOFade(1, 0.05f).SetEase(Ease.OutBack));
 
         seq.Play();
-        
+        audio.Play();
     }
 }

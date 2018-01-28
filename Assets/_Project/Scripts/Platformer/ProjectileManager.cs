@@ -10,6 +10,7 @@ public enum ShootRange
     LONG
 };
 
+[RequireComponent(typeof(AudioSource))]
 public class ProjectileManager : MonoBehaviour {
 
     public bool shoot = false;
@@ -26,7 +27,7 @@ public class ProjectileManager : MonoBehaviour {
     public Vector3 _startPosition;
     private Transform _playerTrans;
 
-
+    AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,7 @@ public class ProjectileManager : MonoBehaviour {
         {
             _startPosition = transform.position;
         }
+        audio = GetComponent<AudioSource>();
 
         _playerTrans = FindObjectOfType<PlayerManager>().transform;
 	}
@@ -79,6 +81,8 @@ public class ProjectileManager : MonoBehaviour {
         shoot = true;
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
+
+        audio.Play();
     }
 
     public void ProjectileOutOfRange()
