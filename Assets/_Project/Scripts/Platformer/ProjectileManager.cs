@@ -84,7 +84,7 @@ public class ProjectileManager : MonoBehaviour {
         GetComponent<BoxCollider2D>().enabled = false;
         if (NoLegs)
         {
-            transform.localPosition = _startPosition; //new Vector3(transform.parent.localPosition.x, _startPosition.y, 0);
+            transform.localPosition = _startPosition;
         }
         else
         {
