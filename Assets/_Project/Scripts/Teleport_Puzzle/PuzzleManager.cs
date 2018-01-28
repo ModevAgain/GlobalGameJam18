@@ -158,42 +158,38 @@ public class PuzzleManager : MonoBehaviour {
         switch (index)
         {
             case 3: // Loose left hand
+
                 Debug.Log("Loose left hand");
                 transform.GetChild(3).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
 
                 Other_PuzzleMan.transform.GetChild(3).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
-                Other_PuzzleMan.transform.GetChild(3).GetComponent<DragAndDropCell>().enabled = false;
-                Other_PuzzleMan.transform.GetChild(3).GetComponentInChildren<DragAndDropItem>().enabled = false;
 
                 _bodyMan.UpdateActiveParts(Bodypart.PartType.LeftHand);
                 break;
             case 5: // Loose right hand
+
                 Debug.Log("Loose right hand");
                 transform.GetChild(5).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
 
                 Other_PuzzleMan.transform.GetChild(5).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
-                Other_PuzzleMan.transform.GetChild(5).GetComponent<DragAndDropCell>().enabled = false;
-                Other_PuzzleMan.transform.GetChild(5).GetComponentInChildren<DragAndDropItem>().enabled = false;
 
                 _bodyMan.UpdateActiveParts(Bodypart.PartType.RightHand);
                 break;
             case 9: // Loose left leg
+
                 Debug.Log("Loose left leg");
                 transform.GetChild(9).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
 
                 Other_PuzzleMan.transform.GetChild(9).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
-                Other_PuzzleMan.transform.GetChild(9).GetComponent<DragAndDropCell>().enabled = false;
-                Other_PuzzleMan.transform.GetChild(9).GetComponentInChildren<DragAndDropItem>().enabled = false;
 
                 _bodyMan.UpdateActiveParts(Bodypart.PartType.LeftLeg);
                 break;
             case 11: // Loose right leg
+
                 Debug.Log("Loose right leg");
                 transform.GetChild(11).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
 
                 Other_PuzzleMan.transform.GetChild(11).GetComponentInChildren<DragAndDropItem>().GetComponent<Image>().sprite = CrossSprite;
-                Other_PuzzleMan.transform.GetChild(11).GetComponent<DragAndDropCell>().enabled = false;
-                Other_PuzzleMan.transform.GetChild(11).GetComponentInChildren<DragAndDropItem>().enabled = false;
 
                 _bodyMan.UpdateActiveParts(Bodypart.PartType.RightLeg);
                 break;
