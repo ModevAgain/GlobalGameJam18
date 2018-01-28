@@ -2302,10 +2302,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShieldHolder: {fileID: 510041749}
-  RightLegActive: 0
-  LeftLegActive: 0
-  RightHandActive: 0
-  LeftHandActive: 0
+  RightLegActive: 1
+  LeftLegActive: 1
+  RightHandActive: 1
+  LeftHandActive: 1
   Animator: {fileID: 1148918579}
 --- !u!114 &1148918583
 MonoBehaviour:
