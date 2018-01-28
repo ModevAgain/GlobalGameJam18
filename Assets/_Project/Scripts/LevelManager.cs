@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour {
         _jumpMan = FindObjectOfType<JumpManager>();
 
         _puzzleMan[0].GetComponent<CanvasGroup>().DOFade(0, 0);
+        _puzzleMan[0].GetComponent<CanvasGroup>().blocksRaycasts = false;
         _puzzleMan[1].GetComponent<CanvasGroup>().DOFade(0, 0);
         _puzzleMan[1].GetComponent<CanvasGroup>().blocksRaycasts = false;
         

@@ -97,6 +97,7 @@ public class BodyPartManager : MonoBehaviour {
                 if (!LeftLegActive && !RightLegActive)
                 {
                     _jumpMan.FillSpeed_Current = _jumpMan.FillSpeed_0Legs;
+                    _projectile.SetNoLegPosition();
                 }
                 else
                 {

@@ -24,6 +24,8 @@ public class ProjectileManager : MonoBehaviour {
     public float ProjectileSpeed;
     public bool OnTheWay;
 
+    public Transform ShootOrigin;
+    public Transform ShootOrigin_NoLegs;
     public Vector3 _startPosition;
     private Transform _playerTrans;
 
@@ -32,10 +34,7 @@ public class ProjectileManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _projectileRange = Longrange;
-        if (!NoLegs)
-        {
-            _startPosition = transform.position;
-        }
+
         audio = GetComponent<AudioSource>();
 
         _playerTrans = FindObjectOfType<PlayerManager>().transform;
@@ -72,12 +71,13 @@ public class ProjectileManager : MonoBehaviour {
     public void SetNoLegPosition()
     {
         NoLegs = true;
-        _startPosition = new Vector3(1.1f, -1.55f, 0);
-        transform.localPosition = new Vector3(1.1f, -1.55f, 0);
+        
     }
 
     public void ShootProjectile()
     {
+        ProjectileOutOfRange();
+
         shoot = true;
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
@@ -92,11 +92,11 @@ public class ProjectileManager : MonoBehaviour {
         GetComponent<BoxCollider2D>().enabled = false;
         if (NoLegs)
         {
-            transform.localPosition = _startPosition;
+            transform.position = ShootOrigin_NoLegs.position;
         }
         else
         {
-            transform.localPosition = new Vector3(_startPosition.x, _startPosition.y, 0);
+            transform.position = new Vector3(ShootOrigin.position.x, ShootOrigin.position.y, 0);
         }
         OnTheWay = false;
         
