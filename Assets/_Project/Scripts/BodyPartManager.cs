@@ -54,6 +54,7 @@ public class BodyPartManager : MonoBehaviour {
 
         if (_healthCounter == 3)
         {
+            DOTween.KillAll();
             SceneManager.LoadScene("Main");
         }
 
