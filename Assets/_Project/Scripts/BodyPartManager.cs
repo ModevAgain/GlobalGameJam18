@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class BodyPartManager : MonoBehaviour {
 
     public GameObject ShieldHolder;
-    public ProjectileManager Projectile;
+    private ProjectileManager _projectile;
 
     [Header("States")]
     public bool RightLegActive;
@@ -35,6 +35,7 @@ public class BodyPartManager : MonoBehaviour {
         _jumpMan = FindObjectOfType<JumpManager>();
         _shootMan = FindObjectOfType<ShootManager>();
         _playerMan = GetComponent<PlayerManager>();
+        _projectile = FindObjectOfType<ProjectileManager>();
 	}
 	
 	// Update is called once per frame
@@ -78,7 +79,7 @@ public class BodyPartManager : MonoBehaviour {
                 if(!LeftLegActive && !RightLegActive)
                 {
                     _jumpMan.FillSpeed_Current = _jumpMan.FillSpeed_0Legs;
-                    Projectile.SetNoLegPosition();
+                    _projectile.SetNoLegPosition();
                     
                 }
                 else

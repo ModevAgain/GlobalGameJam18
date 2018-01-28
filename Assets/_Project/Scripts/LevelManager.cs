@@ -113,6 +113,7 @@ public class LevelManager : MonoBehaviour {
             _playerMan.transform.DOScale(Vector3.one, 0.2f).OnComplete(() =>
             {
                 _playerMan.StopRunning = false;
+                _jumpMan.CanJump = true;
             });
 
 
