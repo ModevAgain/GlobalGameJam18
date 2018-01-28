@@ -31,6 +31,9 @@ public class BodyPartManager : MonoBehaviour {
     private List<GameObject> _shieldList = new List<GameObject>();
 
     public AudioSource audio;
+    public AudioClip audioClip1;
+    public AudioClip audioClip2;
+
 
     // Use this for initialization
     void Start () {
@@ -154,7 +157,11 @@ public class BodyPartManager : MonoBehaviour {
             {
                 transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
             }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim());
-            
+
+            audio.clip = audioClip2;
+            audio.time = 0.1f;
+            audio.Play();
+
             return;
         }
 
@@ -179,7 +186,7 @@ public class BodyPartManager : MonoBehaviour {
 
         Debug.Log(col.gameObject.name);
 
-        audio.DOFade(1, 0.1f);
+        audio.clip = audioClip1;
         audio.Play();
         
 
@@ -201,6 +208,8 @@ public class BodyPartManager : MonoBehaviour {
             transform.Rotate(new Vector3(0, 0, -rot * Time.deltaTime));
         }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim());
 
-        
+        audio.clip = audioClip2;
+        audio.time = 1.5f;
+        audio.Play();
     }
 }

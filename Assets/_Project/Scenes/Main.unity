@@ -2839,6 +2839,8 @@ MonoBehaviour:
   LeftHandActive: 1
   Animator: {fileID: 1148918579}
   audio: {fileID: 1148918586}
+  audioClip1: {fileID: 8300000, guid: 1e6b1761273b0a246a59bed7322453ce, type: 3}
+  audioClip2: {fileID: 8300000, guid: 8356d9ed8dd944f4bbd0eb52f24ef912, type: 3}
 --- !u!114 &1148918583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2898,9 +2900,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1e6b1761273b0a246a59bed7322453ce, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
