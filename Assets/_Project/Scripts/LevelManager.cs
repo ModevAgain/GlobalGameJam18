@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour {
     private ShootManager _shootMan;
     private JumpManager _jumpMan;
 
-    private bool _inAnim;
+    public bool InAnim;
 
 	// Use this for initialization
 	void Start () {
@@ -54,12 +54,12 @@ public class LevelManager : MonoBehaviour {
 
     public void StartPuzzleAnim()
     {
-        if (_inAnim)
+        if (InAnim)
             return;
 
         Debug.Log("Start Puzzle Animation");
 
-        _inAnim = true;
+        InAnim = true;
 
         _playerMan.StopRunning = true;
         _shootMan.CanShoot = false;
@@ -117,7 +117,7 @@ public class LevelManager : MonoBehaviour {
             {
                 _playerMan.StopRunning = false;
                 _jumpMan.CanJump = true;
-                _inAnim = false;
+                InAnim = false;
                 _puzzleMan[0].GetComponent<CanvasGroup>().DOFade(0, 0);
             });
         });

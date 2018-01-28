@@ -27,6 +27,7 @@ public class ShootManager : MonoBehaviour {
     private Transform _player;
     private PlayerManager _playerMan;
     private ProjectileManager _projectileMan;
+    private LevelManager _levelMan;
 
     // Use this for initialization
     void Start()
@@ -34,7 +35,7 @@ public class ShootManager : MonoBehaviour {
         _playerMan = FindObjectOfType<PlayerManager>();
         _player = _playerMan.transform;
         _projectileMan = FindObjectOfType<ProjectileManager>();
-        
+        _levelMan = FindObjectOfType<LevelManager>();
 
         CurrentFillHeight = FillHeight_2Hands;
     }
@@ -48,6 +49,10 @@ public class ShootManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if (_levelMan.InAnim)
+            {
+                return;
+            }
             if (_projectileMan.OnTheWay)
                 return;
 

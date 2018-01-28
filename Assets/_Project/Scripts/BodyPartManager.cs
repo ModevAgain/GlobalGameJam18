@@ -159,7 +159,7 @@ public class BodyPartManager : MonoBehaviour {
             }).OnComplete(() => FindObjectOfType<LevelManager>().StartPuzzleAnim());
 
             audio.clip = audioClip2;
-            audio.time = 0.1f;
+            audio.time = 1.5f;
             audio.Play();
 
             return;

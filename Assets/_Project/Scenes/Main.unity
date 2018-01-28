@@ -826,6 +826,7 @@ MonoBehaviour:
   _puzzleMan:
   - {fileID: 1163628915}
   - {fileID: 2101086648}
+  InAnim: 0
 --- !u!4 &344523656
 Transform:
   m_ObjectHideFlags: 0
@@ -2557,7 +2558,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d36cc9a47774e104689435ce96736462, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.62
   m_Pitch: 1
   Loop: 0
   Mute: 0
