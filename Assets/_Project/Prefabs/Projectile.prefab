@@ -188,6 +188,8 @@ MonoBehaviour:
   Lowrange: 4
   ProjectileSpeed: 0.5
   OnTheWay: 0
+  ShootOrigin: {fileID: 0}
+  ShootOrigin_NoLegs: {fileID: 0}
   _startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &212298887333500320
 SpriteRenderer:
