@@ -89,6 +89,7 @@ public class JumpManager : MonoBehaviour {
         {
             ShootMan.CanShoot = true;
             CanJump = true;
+            _player.position = new Vector3(0, -1.54f, 0);
         });
 
 

@@ -33,7 +33,8 @@ public class ShootManager : MonoBehaviour {
     {
         _playerMan = FindObjectOfType<PlayerManager>();
         _player = _playerMan.transform;
-        _projectileMan = _player.GetComponentInChildren<ProjectileManager>();
+        _projectileMan = FindObjectOfType<ProjectileManager>();
+        
 
         CurrentFillHeight = FillHeight_2Hands;
     }
