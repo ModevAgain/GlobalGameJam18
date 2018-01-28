@@ -114,6 +114,7 @@ public class LevelManager : MonoBehaviour {
             {
                 _playerMan.StopRunning = false;
                 _jumpMan.CanJump = true;
+                _inAnim = false;
             });
 
 
