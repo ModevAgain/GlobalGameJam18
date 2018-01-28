@@ -70,8 +70,8 @@ public class ProjectileManager : MonoBehaviour {
     public void SetNoLegPosition()
     {
         NoLegs = true;
-        _startPosition = new Vector3(1.25f, 0.017f, 0);
-        transform.localPosition = new Vector3(1.25f, 0.017f, 0);
+        _startPosition = new Vector3(1.1f, -1.55f, 0);
+        transform.localPosition = new Vector3(1.1f, -1.55f, 0);
     }
 
     public void ShootProjectile()
