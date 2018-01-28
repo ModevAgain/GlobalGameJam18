@@ -153,6 +153,11 @@ public class BodyPartManager : MonoBehaviour {
             return;
         }
 
+        if (col.gameObject.name == "Projectile")
+        {
+            return;
+        }
+
         Sequence seq = DOTween.Sequence();
         seq.SetLoops(5);
 

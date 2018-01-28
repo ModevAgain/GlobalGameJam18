@@ -39,13 +39,8 @@ public class PuzzleManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    ShufflePuzzle();
-        //    StartCoroutine(StartPuzzle());
-        //}
 
-	}
+    }
 
     public IEnumerator ShufflePuzzle(int level = 1)
     {
