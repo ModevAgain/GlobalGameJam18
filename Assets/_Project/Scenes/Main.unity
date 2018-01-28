@@ -5210,7 +5210,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4350242316849148, guid: e60574bad25e8bc4d8f8f84d9f363e62, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.22
+      value: -1.38
       objectReference: {fileID: 0}
     - target: {fileID: 4350242316849148, guid: e60574bad25e8bc4d8f8f84d9f363e62, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5239,7 +5239,12 @@ Prefab:
     - target: {fileID: 212298887333500320, guid: e60574bad25e8bc4d8f8f84d9f363e62,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114535634616812738, guid: e60574bad25e8bc4d8f8f84d9f363e62,
+        type: 2}
+      propertyPath: ProjectileSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e60574bad25e8bc4d8f8f84d9f363e62, type: 2}
